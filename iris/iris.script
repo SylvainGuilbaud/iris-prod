@@ -1,0 +1,21 @@
+    
+    zn "USER"
+    do $SYSTEM.OBJ.Load("zpm-0.10.7.xml","ck")
+    zpm "enable -map -globally"
+
+    zn "%SYS"
+
+    set app = "/csp/sc"
+    set appProperties("DeepSeeEnabled")=1
+    set sc = ##class(Security.Applications).Modify(app,.appProperties)
+    
+    zn "SC"
+
+    set f = ##class(%File).%New("/home/irisowner/dev/key/zpm-password.key")
+    do f.Open("R")
+    set password = f.ReadLine()
+
+    zpm "repo -o -name isc -url https://ipm.intersystems.com -username guilbaud -password "_ password
+    zpm "install isc-supply-chain"
+
+    halt

@@ -1,14 +1,17 @@
 services:
  
   iris:
-    image: containers.intersystems.com/intersystems/iris:latest-em
+    build: 
+      args:
+        IMAGE: containers.intersystems.com/intersystems/iris:latest-em
+      context: iris
     container_name: iris
     hostname: iris
     ports:
       - ${IRIS_PORT}:1972
     volumes:
       - ./iris-data:/iris-data
-      - ./iris.key:/tmp/iris.key:ro
+      - ./iris/key/iris.key:/tmp/iris.key:ro
     command: --key /tmp/iris.key
     restart: unless-stopped
     environment:
