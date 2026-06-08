@@ -1,6 +1,6 @@
     
     zn "USER"
-    do $SYSTEM.OBJ.Load("zpm-0.10.7.xml","ck")
+    do $SYSTEM.OBJ.Load("/home/irisowner/dev/zpm-0.10.7.xml","ck")
     zpm "enable -map -globally"
 
     zn "%SYS"
