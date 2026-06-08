@@ -4,7 +4,7 @@ TARGET=${1:-iris}
 
 case "$TARGET" in
     iris)
-        CONTAINER="iris-test"
+        CONTAINER="iris"
         ;;
     prod1)
         CONTAINER="iris-prod-1"
@@ -18,4 +18,4 @@ case "$TARGET" in
         ;;
 esac
 
-docker exec -it "$CONTAINER" iris session iris -U IRISAPP
+docker exec -it "$CONTAINER" iris session iris -U SC
