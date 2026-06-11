@@ -1,3 +1,4 @@
 **/*.key
 iris-data/
 **/zpm.json
+**/*.pem
