@@ -14,9 +14,7 @@
     set f = ##class(%File).%New("/home/irisowner/dev/key/zpm.json")
     do f.Open("R")
     set content=""
-    while 'f.AtEnd {
-        set content = content _ f.ReadLine()
-    }
+    while 'f.AtEnd { set content = content _ f.ReadLine() }
     set zpm = {}.%FromJSON(content)  
 
     zpm "repo -o -name isc -url https://ipm.intersystems.com -username "_ zpm.login_" -password "_ zpm.password
