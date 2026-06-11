@@ -10,7 +10,7 @@ services:
     ports:
       - ${IRIS_PORT}:1972
     volumes:
-      - ./iris-data:/iris-data
+      - iris-data:/iris-data
       - ./iris/key/iris.key:/tmp/iris.key:ro
     command: --key /tmp/iris.key
     restart: unless-stopped
@@ -37,5 +37,5 @@ services:
     networks:
       - default
  
-# volumes:
-#   iris-data:
+volumes:
+  iris-data:

@@ -32,3 +32,29 @@ The `docker-compose.yml` defines two services:
 
 Both services share the default Docker network. Port values are configured via environment variables (e.g. in a `.env` file).
 
+## INSTALLING THE SUPPLY CHAIN PACKAGE
+The `iris.script` file is executed during the IRIS container build process. It performs the following steps:
+1. Opens a connection to the IRIS instance and switches to the `SC` namespace.
+2. Reads the ZPM repository credentials from a JSON file (`ipm.json`) and uses them to configure the ZPM repository for InterSystems packages.
+3. Installs the `isc-supply-chain` package from the InterSystems Package Manager (IPM) repository.
+This setup allows for a clean and repeatable deployment of the IRIS environment with the necessary application components pre-installed.
+
+## BEFORE YOU START
+- Ensure you have Docker and Docker Compose installed on your machine.
+- Create a [`.env`](.env) file in the root of the project with the necessary environment variables (e.g. `IRIS_PORT`, `WEBGATEWAY_PORT_HTTP`, `WEBGATEWAY_PORT_HTTPS`).
+- Place your IRIS license key in `iris/key/iris.key`
+- Fill your credentials in the `iris/key/ipm.json` file with the necessary login information. You can retrieve your login and password from the [InterSystems Package Manager](https://ipm.intersystems.com/contents/ipm/install) website. You will find a model file in the repository in [`iris/key/ipm.json`](iris/key/ipm.json.to_replace_with_your_password), and you should replace the `login` and `password` fields with your actual credentials and rename the file to `ipm.json`. This file is used during the build process to authenticate with the IPM repository and install the required packages.
+- Persistent data is stored in the `iris-data` Docker volume, so ensure it has the appropriate permissions for Docker to read/write. The ./start.sh and ./stop.sh scripts will handle starting and stopping the services, but you can also use `docker compose` commands directly if needed. The [`./start.sh`](./start.sh) handles the permissions for the iris-data volume, ensuring that the IRIS container can access it properly.
+
+## STARTING THE SERVICES
+Run the following command in the root of the project to start both the IRIS and Web Gateway services:
+```bash
+./start.sh
+```
+This will build the IRIS image (if not already built) and start both containers. You can access the IRIS instance on the specified port and the Web Gateway on the configured HTTP/HTTPS ports.
+
+## STOPPING THE SERVICES
+To stop the running containers, use the following command:
+```bash
+./stop.sh
+```
