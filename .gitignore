@@ -2,4 +2,3 @@
 iris-data/
 **/ipm.json
 **/*.pem
-.vscode/**/*
