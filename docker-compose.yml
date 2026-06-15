@@ -1,7 +1,7 @@
 services:
- 
+
   iris:
-    build: 
+    build:
       args:
         IMAGE: containers.intersystems.com/intersystems/iris:latest-em
       context: iris
@@ -12,11 +12,16 @@ services:
     volumes:
       - iris-data:/iris-data
       - ./iris/key/iris.key:/tmp/iris.key:ro
+      - ./iris/python/iris_python_demo:/usr/irissys/mgr/python/iris_python_demo
     command: --key /tmp/iris.key
     restart: unless-stopped
     environment:
       - TZ=Europe/Paris
       - ISC_DATA_DIRECTORY=/iris-data
+      - AZURE_OPENAI_API_KEY=${AZURE_OPENAI_API_KEY}
+      - AZURE_OPENAI_ENDPOINT=${AZURE_OPENAI_ENDPOINT}
+      - AZURE_OPENAI_API_VERSION=${AZURE_OPENAI_API_VERSION}
+      - AZURE_OPENAI_EMBEDDING_DEPLOYMENT=${AZURE_OPENAI_EMBEDDING_DEPLOYMENT}
  
   webgateway:
     image: containers.intersystems.com/intersystems/webgateway:latest-em

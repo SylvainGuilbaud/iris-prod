@@ -20,4 +20,7 @@
     zpm "repo -o -name isc -url https://ipm.intersystems.com -username "_ ipm.login_" -password "_ ipm.password
     zpm "install isc-supply-chain"
 
+    // Load the Python demo module (compiles classes, copies Python, installs pip deps)
+    zpm "load -nodev /home/irisowner/dev -v"
+
     halt

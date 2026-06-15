@@ -1,5 +1,18 @@
 {
     "objectscript.conn": {
-        "active": false
-    }
+        "active": false,
+        "server": "iris-prod",
+        "ns": "SC"
+    },
+    "intersystems.servers": {
+        "iris-prod": {
+            "webServer": {
+                "scheme": "http",
+                "host": "localhost",
+                // "host": "host.docker.internal",
+                "port": 881
+            },
+            "username": "superuser"
+        },
+    },
 }
