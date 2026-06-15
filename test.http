@@ -4,7 +4,7 @@ Content-Type: application/json
 Authorization: Basic c3VwZXJ1c2VyOlNZUw==
 
 {
-    "text": "IRIS supports native vector storage with HNSW indexing", 
+    "text": "InterSystems IRIS supports native vector storage with HNSW indexing", 
     "metadata": {
         "source": "docs"
         }
